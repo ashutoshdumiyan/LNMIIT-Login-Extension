@@ -1,4 +1,8 @@
 const form = document.forms.login_form;
+const settings_button = document.querySelector(".settings-button");
+settings_button.onclick = function() {
+  window.open("./info.html");
+};
 chrome.storage.local.get(["user_name"], function(result) {
   user_name.value = result.user_name;
 });
@@ -17,10 +21,10 @@ form.addEventListener("submit", function(e) {
   chrome.storage.local.set({ password: password.value }, function() {
     console.log("Password is set to " + user_name.value);
   });
-
-  saved.style.transform = "scale(1)";
+  error.innerHTML = "Saved!";
+  info.style.transform = "scale(1)";
   setInterval(() => {
-    saved.style.transform = "scale(0)";
+    info.style.transform = "scale(0)";
   }, 1500);
 });
 
@@ -36,9 +40,10 @@ login.addEventListener("click", function(event) {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { data: [un, pw] }, function(response) {
       if (response.msg) {
-        missing.style.transform = "scale(1)";
+        error.innerHTML = "Data is missing!";
+        info.style.transform = "scale(1)";
         setInterval(() => {
-          missing.style.transform = "scale(0)";
+          info.style.transform = "scale(0)";
         }, 1500);
       }
     });

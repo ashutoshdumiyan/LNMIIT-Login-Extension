@@ -19,93 +19,104 @@
       body {
         margin: 0;
         padding: 0;
-        width: 350px;
+        padding-bottom: 35px;
+        padding-top: 5px;
+        width: 300px;
       }
       .row {
         margin-bottom: 8px;
       }
       .settings-button {
-        margin: 1.52rem 0 0.912rem 0;
+        padding: 0;
+        margin: 0.9rem 0 0.912rem 0;
+        transform: scale(0.7);
       }
-      #saved {
-          transition: transform 0.5s ease;
-          transform: scale(0);
+      .settings-button i {
+        transform: scale(2.6);
       }
-      #missing {
-          transition: transform 0.5s ease;
-          transform: scale(0);
+      #info {
+        transition: transform 0.5s ease;
+        transform: scale(0);
       }
     </style>
   </head>
   <body>
-      <!-- <div class="container">
+    <!-- <div class="container">
           <h6>
               Enter your details and then click Save button (for first time usage).
           </h6>
       </div> -->
-      <div class="row">
-    <div class="col s12 m5">
-      <div class="card-panel teal">
-          <h6>
-            <span class="white-text">Enter your details and then click Save button (for first time usage). After saving, click on Login button.
-            </span>
-          </h6>
-      </div>
-    </div>
-  </div>
     <div class="row">
       <div class="col s12">
         <div class="row">
-          <div class="col s10"><h4>Save your details</h4></div>
-          <div class="col s2">
+          <div class="col s8" style="margin-left: 1rem;">
+            <h5 style="font-family: roboto; font-weight: 600;">
+              Save your details
+            </h5>
+          </div>
+          <div class="col s3">
             <button
-              class="btn-floating waves-effect waves-light black settings-button"
+              class="btn-floating waves-effect waves-light light-blue settings-button"
             >
-              <i class="material-icons">settings</i>
+              <i class="material-icons">info_outline</i>
             </button>
           </div>
         </div>
       </div>
     </div>
-    <hr />
+    <hr style="width: 100vw;" />
     <div class="row">
-      <form class="col s12" name="login_form">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="user_name" placeholder="" type="text" class="validate" />
-            <label for="user_name">User Name</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" placeholder="" type="password" />
-            <label for="password">Password</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <button
-              class="btn waves-effect waves-light"
-              type="submit"
-              name="action"
-            >
-              Save
-            </button>
-          </div>
-          <div class="col s6" id="saved">
-            <p>
-                <h5>Saved!</h5>
-            </p>
-          </div>
-        </div>
-      </form>
-      <div class="col s12">
+      <div class="container">
+        <form class="col s12" name="login_form">
           <div class="row">
-              <div class="col s6"><button class="btn waves-effect waves-light" id="login">LogIn</button></div>
-              <div class="col s6" id = "missing" ><p>
-                <h5>Data is missing</h5>
-            </p></div>
+            <div class="input-field col s12">
+              <input
+                id="user_name"
+                placeholder=""
+                type="text"
+                class="validate"
+              />
+              <label for="user_name">User Name</label>
+            </div>
           </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" placeholder="" type="password" />
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s2"></div>
+
+            <div class="input-field col s4">
+              <button
+                class="btn waves-effect waves-light"
+                type="submit"
+                name="action"
+              >
+                Save
+              </button>
+            </div>
+            <div class="input-field col s4">
+              <button class="btn waves-effect waves-light" id="login">
+                LogIn
+              </button>
+            </div>
+            <div class="col s2"></div>
+          </div>
+        </form>
+      </div>
+      <div class="col s12" id="info">
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s8" style="position: relative;">
+            <h5
+              style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);"
+              id="error"
+            ></h5>
+          </div>
+          <div class="col s2"></div>
+        </div>
       </div>
     </div>
 
