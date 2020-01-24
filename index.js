@@ -22,13 +22,25 @@ form.addEventListener("submit", function(e) {
   setInterval(() => {
     saved.style.transform = "scale(0)";
   }, 1500);
+});
 
-  //   Retrieve username and password from local storage
-  chrome.storage.local.get(["user_name"], function(result) {
-    console.log("Username currently is " + result.user_name);
+login.addEventListener("click", function(event) {
+  const un = user_name.value;
+  const pw = password.value;
+  //   chrome.runtime.sendMessage({ greeting: "hello" }, function(response) {
+  //     console.log(response.farewell);
+  //   });
+  chrome.tabs.executeScript({
+    file: "contentScript.js"
   });
-
-  chrome.storage.local.get(["password"], function(result) {
-    console.log("Password currently is " + result.password);
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { data: [un, pw] }, function(response) {
+      if (response.msg) {
+        missing.style.transform = "scale(1)";
+        setInterval(() => {
+          missing.style.transform = "scale(0)";
+        }, 1500);
+      }
+    });
   });
 });
