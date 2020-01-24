@@ -13,6 +13,7 @@ chrome.storage.local.get(["password"], function(result) {
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
+  console.log(user_name.value, password.value);
   //   Save Username and password in local storage
   chrome.storage.local.set({ user_name: user_name.value }, function() {
     console.log("Username is set to " + user_name.value);
