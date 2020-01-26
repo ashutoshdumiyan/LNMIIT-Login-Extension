@@ -10,12 +10,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     var name = document.querySelector("#LoginUserPassword_auth_username");
     var pass = document.querySelector("#LoginUserPassword_auth_password");
     var button = document.querySelector("#UserCheck_Login_Button");
+    var logout = document.querySelector("#UserCheck_Logoff_Button_span");
+    var link = document.querySelector("span.portal_link");
+    if (logout) {
+      sendResponse({ logged: true });
+    }
+    if (link) {
+      location = "Reset";
+    }
     name.value = request.data[0];
     pass.value = request.data[1];
     console.log(name.value, pass.value);
     button.click();
-    sendResponse({});
+    sendResponse({ success: "Logged In!" });
   } else {
-    sendResponse({ msg: "Data is missing" });
+    sendResponse({ errorMsg: "Data is missing!" });
   }
 });
