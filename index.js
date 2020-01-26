@@ -14,25 +14,33 @@ chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
 });
 
 chrome.storage.local.get(["user_name"], function(result) {
-  user_name.value = result.user_name;
+  if (result.user_name != undefined) {
+    user_name.value = result.user_name;
+  }
 });
 
 chrome.storage.local.get(["password"], function(result) {
-  password.value = result.password;
+  if (result.password != undefined) {
+    password.value = result.password;
+  }
 });
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
-  console.log(user_name.value, password.value);
-  //   Save Username and password in local storage
-  chrome.storage.local.set({ user_name: user_name.value }, function() {
-    console.log("Username is set to " + user_name.value);
-  });
+  if (user_name.value != "" && password.value != "") {
+    console.log(user_name.value, password.value);
+    //   Save Username and password in local storage
+    chrome.storage.local.set({ user_name: user_name.value }, function() {
+      console.log("Username is set to " + user_name.value);
+    });
 
-  chrome.storage.local.set({ password: password.value }, function() {
-    console.log("Password is set to " + user_name.value);
-  });
-  error.innerHTML = "Saved!";
+    chrome.storage.local.set({ password: password.value }, function() {
+      console.log("Password is set to " + user_name.value);
+    });
+    error.innerHTML = "Saved!";
+  } else {
+    error.innerHTML = "Enter both credentials";
+  }
 });
 
 login.addEventListener("click", function(event) {
