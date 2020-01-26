@@ -46,14 +46,16 @@ login.addEventListener("click", function(event) {
   });
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { data: [un, pw] }, function(response) {
-      if (response.logged) {
-        error.innerHTML = "Already Logged In!";
-      }
-      if (response.errorMsg) {
-        error.innerHTML = response.errorMsg;
-      }
-      if (response.success) {
-        error.innerHTML = response.success;
+      if (response !== undefined) {
+        if (response.logged) {
+          error.innerHTML = "Already Logged In!";
+        }
+        if (response.errorMsg) {
+          error.innerHTML = response.errorMsg;
+        }
+        if (response.success) {
+          error.innerHTML = response.success;
+        }
       }
     });
   });
