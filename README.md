@@ -4,10 +4,7 @@ When you start the extension for the first time after installation, enter your l
 <br />
 <h2> Open the Page</h2>
 <img src="https://imgur.com/m8jDMIr.png" width="740" height="480" >
-<br />
 <h2> First save the details </h2>
 <img src="https://imgur.com/dSrNIKQ.png" width="740" height="480" >
-<br />
 <h2> Then click Login button </h2>
 <img src="https://imgur.com/NvlJBzd.png" width="740" height="480"  >
-<br />
